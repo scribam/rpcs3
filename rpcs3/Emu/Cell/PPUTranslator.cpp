@@ -974,12 +974,12 @@ void PPUTranslator::VCTUXS(ppu_opcode_t op)
 
 void PPUTranslator::VEXPTEFP(ppu_opcode_t op)
 {
-	SetVr(op.vd, Call(GetType<f32[4]>(), m_pure_attr, "__vexptefp", GetVr(op.vb, VrType::vf)));
+	SetVr(op.vd, Call(GetType<f32[4]>(), "llvm.exp2.v4f32", GetVr(op.vb, VrType::vf)));
 }
 
 void PPUTranslator::VLOGEFP(ppu_opcode_t op)
 {
-	SetVr(op.vd, Call(GetType<f32[4]>(), m_pure_attr, "__vlogefp", GetVr(op.vb, VrType::vf)));
+	SetVr(op.vd, Call(GetType<f32[4]>(), "llvm.log2.v4f32", GetVr(op.vb, VrType::vf)));
 }
 
 void PPUTranslator::VMADDFP(ppu_opcode_t op)
